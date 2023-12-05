@@ -6,14 +6,14 @@
         </pre>
     </div>
     <div id="game-buttons" class="container h-25 d-flex" v-if="isFunc">
-        <button type="button" @click="move()" class="btn btn-outline-success">move()</button>
+        <button type="button" @click="move(); setArg()" class="btn btn-outline-success">move()</button>
         <button type="button" @click="rotate()" class="btn btn-outline-success">rotate()</button>
         <button type="button" @click="take()" class="btn btn-outline-success">take()</button>
         <button type="button" @click="put()" class="btn btn-outline-success">put()</button>
     </div>
     <div id="game-buttons" class="container h-25 d-flex align-items-center" v-if="!isFunc">
         <label for="customRange2" class="form-label">Значние аргумента</label>
-        <input type="range" class="form-range" min="0" max="5" id="customRange2" :value="arg">
+        <input type="range" class="form-range" min="0" max="5" id="customRange2" v-model="arg">
     </div>
 </template>
 
@@ -33,11 +33,10 @@ export default defineComponent({
     methods: {
         move() {
 
-            this.isFunc = false
+            this.funcs.push(`move()\n`)
 
-            this.funcs.push(`move()`)
-            // this.strFuncs += 'move()\n'
-            this.strFuncs += hljs.highlight('move()\n', {
+            this.strFuncs += 'move()\n'
+            this.strFuncs += hljs.highlight(this.funcs[this.funcs.length - 1], {
                 language: 'javascript'
             }).value
 
@@ -77,8 +76,24 @@ export default defineComponent({
             this.strFuncs = back.join('\n')
         },
         setArg() {
-            console.log(1)
             this.isFunc = false
+
+            // this.strFuncs =
+
+        }
+    },
+    watch: {
+        arg: (val) => {
+
+            // let strFuncs = []
+
+            console.log(this.move)
+
+            // for (const func of this.funcs) {
+            //     strFuncs.push(this.strFuncs += hljs.highlight(func+'\n', {
+            //         language: 'javascript'
+            //     }).value)
+            // }
         }
     }
 })
