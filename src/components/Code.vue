@@ -87,7 +87,7 @@ export default defineComponent({
 
             // let strFuncs = []
 
-            console.log(this.move)
+            // console.log(this.move)
 
             // for (const func of this.funcs) {
             //     strFuncs.push(this.strFuncs += hljs.highlight(func+'\n', {
