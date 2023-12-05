@@ -27,3 +27,9 @@
     width: 90%;
     object-fit: contain;
 }
+
+.btn {
+    font-size: 1.5rem;
+    max-height: 25%;
+    margin: 0 1vw;
+}

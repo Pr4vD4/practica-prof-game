@@ -6,6 +6,7 @@
 
 <script>
 import {defineComponent} from 'vue'
+import {useGameStore} from "@/store/gameStore";
 
 export default defineComponent({
     name: "Game",

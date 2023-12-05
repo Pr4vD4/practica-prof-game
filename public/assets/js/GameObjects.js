@@ -2,6 +2,7 @@ class Game {
     constructor(field) {
 
         this.field = field
+        this.size = field.length
 
     }
     createFiled(field) {
@@ -55,6 +56,18 @@ class Game {
                     square.append(robot)
 
                 }
+
+                if (this.field[i][j] === 't') {
+                    let square = field.querySelector(`[data-x="${j}"][data-y="${i}"]`)
+
+                    let robot = document.createElement('img')
+                    robot.src = './assets/img/target.png'
+                    robot.className = 'game-object'
+
+                    square.append(robot)
+
+                }
+
             }
         }
     }

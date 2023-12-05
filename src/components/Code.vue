@@ -1,11 +1,19 @@
 <template>
     <div id="game-code" class="container h-75 bg-dark">
+        <button type="button" @click="back" class="btn btn-outline-warning">back</button>
         <pre>
-            <code class="language-javascript bg-dark" ref="code">{{ this.strFuncs }}</code>
+            <code class="language-javascript bg-dark" ref="code" v-html="strFuncs"></code>
         </pre>
     </div>
-    <div id="game-buttons" class="container h-25">
-        <p @click="move">move</p>
+    <div id="game-buttons" class="container h-25 d-flex" v-if="isFunc">
+        <button type="button" @click="move()" class="btn btn-outline-success">move()</button>
+        <button type="button" @click="rotate()" class="btn btn-outline-success">rotate()</button>
+        <button type="button" @click="take()" class="btn btn-outline-success">take()</button>
+        <button type="button" @click="put()" class="btn btn-outline-success">put()</button>
+    </div>
+    <div id="game-buttons" class="container h-25 d-flex align-items-center" v-if="!isFunc">
+        <label for="customRange2" class="form-label">Значние аргумента</label>
+        <input type="range" class="form-range" min="0" max="5" id="customRange2" :value="arg">
     </div>
 </template>
 
@@ -17,23 +25,62 @@ export default defineComponent({
     data() {
         return {
             funcs: [],
-            strFuncs: ``
+            strFuncs: ``,
+            isFunc: true,
+            arg: 0
         }
     },
     methods: {
         move() {
+
+            this.isFunc = false
+
             this.funcs.push(`move()`)
-            this.strFuncs += 'move()\n'
+            // this.strFuncs += 'move()\n'
+            this.strFuncs += hljs.highlight('move()\n', {
+                language: 'javascript'
+            }).value
 
-            console.log(this.strFuncs)
+        },
+        rotate() {
 
+            this.funcs.push(`rotate()`)
+            // this.strFuncs += 'move()\n'
+            this.strFuncs += hljs.highlight('rotate()\n', {
+                language: 'javascript'
+            }).value
+
+
+        },
+        take() {
+
+            this.funcs.push(`take()`)
+            // this.strFuncs += 'move()\n'
+            this.strFuncs += hljs.highlight('take()\n', {
+                language: 'javascript'
+            }).value
+
+        },
+        put() {
+
+            this.funcs.push(`put()`)
+            // this.strFuncs += 'move()\n'
+            this.strFuncs += hljs.highlight('put()\n', {
+                language: 'javascript'
+            }).value
+
+        },
+        back() {
+            let back = this.strFuncs.split('\n')
+            back.splice(-2, 1)
+            // console.log(back)
+            this.strFuncs = back.join('\n')
+        },
+        setArg() {
+            console.log(1)
+            this.isFunc = false
         }
-    },
-    // watch: {
-    //     funcs(value) {
-    //         alert(value)
-    //     }
-    // }
+    }
 })
 </script>
 
