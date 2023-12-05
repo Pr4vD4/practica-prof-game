@@ -1,0 +1,29 @@
+.wrapper {
+    height: 100vh;
+}
+#game {
+    height: 80%;
+}
+.fieldRow {
+    display: flex;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*border: 1px black solid;*/
+}
+
+.square-light {
+    background-color: #abb1b6;
+}
+
+.square-dark {
+    background-color: #57636d;
+}
+.game-object {
+    height: 90%;
+    width: 90%;
+    object-fit: contain;
+}
